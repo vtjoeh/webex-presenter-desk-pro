@@ -19,7 +19,7 @@ The macro does not require a touch panel be attached to the Desk Pro, but it mak
   
 ***Some of the buttons:***   
   
-**Default (Main Cam Only)** Return to sending main camera only. 
+**Default (Main Cam Only)** - Return to sending main camera only. 
   
 **Present Me** - Only presents you full screen in the content channel.  
 
