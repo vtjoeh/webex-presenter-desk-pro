@@ -27,6 +27,6 @@ The macro does not require a touch panel be attached to the Desk Pro, but it mak
 
 **My Opacity (PC Overlay)** - Changes your opacity when the PC input is the virtual background. 
 
-The macro remembers your last virtual background before selecting the PC as the virtual background.  When the **Default (Main Cam Only)** button is cliked it will return to this background (e.g. User customer image, preloaded background, background blur, etc).   
+The macro remembers your last virtual background before selecting the PC as the virtual background.  When the **Default (Main Cam Only)** button is cliked it will return to this background (e.g. custom image, preloaded background, background blur, none).   
 
-The macro determines if your USB-C or HDMI input is available on startup.  If both are connected, it defaults to the USB-C input.  This can be overwritten by select the **Defaults** tab and selecting the **USB** or **HDMI** button next to **Default PC Overlay Source**.  This is reset if the Desk Pro is powered on and off.  
+The macro determines if your USB-C or HDMI input is available on startup.  If both are connected, it defaults to the USB-C input.  This can be overwritten by selecting the **Defaults** tab and selecting the **USB** or **HDMI** button next to **Default PC Overlay Source**.  This is reset if the Desk Pro is powered on and off.  
