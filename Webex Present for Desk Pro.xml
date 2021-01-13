@@ -21,7 +21,7 @@
         </Widget>
       </Row>
       <Row>
-        <Name>Full Screen Default</Name>
+        <Name>Full Screen</Name>
         <Widget>
           <WidgetId>swap_Content_MainCam</WidgetId>
           <Name>Present Me</Name>
