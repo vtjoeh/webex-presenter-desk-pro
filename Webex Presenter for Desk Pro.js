@@ -2,7 +2,7 @@
 //
 // During a **Webex Meeting** take advantage of using PC as a background image.  Also, make your main camera the presentation source.  
 // This is helpful if the default view for partiicpants is Grid View in Webex. 
-// Author:  Joe Hughes joehughe@cisco.com 
+// Author:  Joe Hughes --- reach by e-mail at: joehughe at cisco . com 
 
 import xapi from 'xapi';
 
