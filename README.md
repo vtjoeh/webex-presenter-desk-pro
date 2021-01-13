@@ -7,7 +7,7 @@ Use the Webex Desk Pro feature of PC overlay in a Webex Meeting and get a full s
 ![Before Picture](/images/before.png)
   
 <br/><br/><br/>
-**Solution:** This macro allows you to send the PC Overlay source as the content channel from the Desk Pro.  There fore you will get grid view.  
+**Solution:** This macro allows you to send the PC Overlay source as the content channel from the Desk Pro.  Therefore participants in will see the following view:  
 ![After Picture](/images/after.png)
   
 <br/><br/><br/>
