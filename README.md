@@ -6,20 +6,14 @@ Use the Webex Desk Pro feature of PC overlay in a Webex Meeting and get a full s
   
 ![Before Picture](/images/before.png)
   
-\
-\
-\  
+<br/><br/><br/>
 **Solution:** This macro allows you to send the PC Overlay source as the content channel from the Desk Pro.  There fore you will get grid view.  
 ![After Picture](/images/after.png)
   
-\
-\
-\  
+<br/><br/><br/>
 **Screen shot of Touch 10** 
-![Touch Panel](/images/touchpanel.png)
-\
-\
-\ 
+<br/>![Touch Panel](/images/touchpanel.png)
+<br/><br/><br/>
     
 The macro does not require a touch panel be attached to the Desk Pro, but it makes it easier to see the screen when you use the buttons.  
   
