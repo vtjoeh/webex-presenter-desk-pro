@@ -1,5 +1,5 @@
 # webex-presenter-desk-pro
-Use the Webex Desk Pro feature of PC overlay in a Webex Meeting and get a full screen presentation.   
+Use the Webex Desk Pro feature of PC overlay in a Webex Meetings and get a full screen presentation.   
   
   
 **Problem:** The Webex Desk Pro has a great feature where the PC input is a virtual background during a presentation.  The problem is that the default view in Webex Meeting is Grid View which means you will show up in only one small portion of the screen.  
