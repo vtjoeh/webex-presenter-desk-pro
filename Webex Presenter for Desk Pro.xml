@@ -181,7 +181,7 @@
         </Widget>
       </Row>
       <Row>
-        <Name>Row</Name>
+        <Name>PIP or Blend</Name>
         <Widget>
           <WidgetId>swap_composition_Blend</WidgetId>
           <Name>Blend</Name>
