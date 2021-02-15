@@ -6,13 +6,13 @@ Uses the Webex Desk Pro feature of PC overlay in a Webex Meetings.  Move your im
   
 
   
-![Move and resive](/images/moveAndResizeExample.png)
+![Move and resive](./images/moveAndResizeExample.png)
   
 <br/><br/><br/>
 
 <br/><br/><br/>
 **Screen shot of Touch 10** 
-<br/>![Touch Panel](/images/MoveZoomTab.png)
+<br/>![Touch Panel](./images/MoveZoomTab.png)
 <br/><br/><br/>
     
 The macro does not require a touch panel be attached to the Desk Pro, but it makes it easier to see the screen when you use the buttons.  
