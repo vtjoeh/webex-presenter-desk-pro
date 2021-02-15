@@ -3,12 +3,11 @@ Uses the Webex Desk Pro feature of PC overlay in a Webex Meetings.  Move your im
   
 *Note: This code uses an API that might require your Desk Pro be in Preview or beta channel for the RoomOS.*
 
-![Move and resive](./images/MoveAndResizeExample.png) <br/>
+![Move and resive](./images/MoveAndResizeExample.png)
 
-<img src="./images/PIPexample.png" width="600" /> <img src="./images/PCpipexample.png" width="600" /> <br/>
+<img src="./images/PIPexample.png" width="600" /> <img src="./images/PCpipexample.png" width="600" />
   
-**Screen shot of Touch 10** 
-<br/><img src="./images/MoveZoomTab.png" width="400" />     <img src="./images/WebexPresenterTab.png" width="400" />
+**Screen shot of Touch 10** <img src="./images/MoveZoomTab.png" width="500" />     <img src="./images/WebexPresenterTab.png" width="500" />
 <br/><br/><br/>
    
 The macro does not require a touch panel be attached to the Desk Pro, but it makes it easier to see the screen when you use the buttons.  
