@@ -5,7 +5,7 @@ Uses the Webex Desk Pro feature of PC overlay in a Webex Meetings.  Move your im
 
 ![Move and resive](./images/MoveAndResizeExample.png)
 
-<img src="./images/PIPexample.png" width="600" /> <img src="./images/PCpipexample.png" width="600" />
+<img src="./images/PIPexample.png" width="500" /> <img src="./images/PCpipexample.png" width="500" />
   
 **Screen shot of Touch 10** <img src="./images/MoveZoomTab.png" width="500" />     <img src="./images/WebexPresenterTab.png" width="500" />
 <br/><br/><br/>
