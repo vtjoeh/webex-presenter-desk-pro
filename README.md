@@ -6,7 +6,7 @@ Uses the Webex Desk Pro feature of PC overlay in a Webex Meetings.  Move your im
   
 
   
-![Move and resive](./images/moveAndResizeExample.png)
+![Move and resive](./images/MoveAndResizeExample.png)
   
 <br/><br/><br/>
 
