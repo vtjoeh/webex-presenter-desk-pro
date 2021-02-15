@@ -1,9 +1,12 @@
 # webex-presenter-desk-pro
-Uses the Webex Desk Pro feature of PC overlay in a Webex Meetings.  Move your image, change it to a Picture-in-Picture (PIP), change it to a PC PIP and save it is a preset for future use.  
+Uses the Webex Desk Pro feature of Immersive Share and is designed to work in a Webex Meetings.  
+- Move and resize your image.
+- Change between Picture-in-Picture (PIP), PC PIP and Blend.
+- Save the current view as a preset
 
-The macro **dbMacro.js** also needs to be installed, but does not need to be enabled.  Presets are stored in this macro for when in case the macro engine is restarted or if the Desk Pro is turned off and on. 
+**Note:** _The macro **dbMacro.js** also needs to be installed, but does not need to be enabled.  Presets are stored in this macro for cases when the macro engine is restarted or if the Desk Pro is turned off and on._ 
   
-*Note: This code uses an API that might require your Desk Pro be in Preview or beta channel for the RoomOS.*
+**Note:** _This code uses an API that might require your Desk Pro RoomOS software be in Preview or beta channel._
 
 <img src="./images/MoveAndResizeExample.png" width="800">
 <img src="./images/PIPexample.png" width="800">
