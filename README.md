@@ -45,8 +45,10 @@ The macro does not require a touch panel be attached to the Desk Pro, but it mak
 
 **PIP Blend and Video PIP** - Changes the view. 
 
+##  
+
 The macro remembers your last virtual background before selecting the PC as the virtual background.  When the **Default (Main Cam Only)** button is cliked it will return to this background (e.g. custom image, preloaded background, background blur, none).  This setting is stored in the touch panel in case of a script restart.  
 
-In certain instances the macro automatically goes back to a default settings.  For example, if someone else shares content in a Webex meeting the macro returns to your main camera.  If the call ends, the macro automatically turns off the default settings. 
+In certain instances the macro automatically goes back to a default setting.  For example, if someone else shares content in a Webex meeting the macro returns to your main camera.  If the call ends, the macro automatically removes Immersive Share and returns to default settings. 
 
-The macro determines if your USB-C or HDMI input is available on startup.  If both are connected, it defaults to the USB-C input.  This can be overwritten by selecting the **Defaults** tab and selecting the **USB** or **HDMI** button next to **Default PC Overlay Source**.  This also stored in the touchpanel and is reset if the Desk Pro is powered on and off.  
+On startup, the macro determines if your USB-C or HDMI input is available.  If both are connected, it defaults to the USB-C input.  This can be overwritten by selecting the **Defaults** tab and selecting the **USB** or **HDMI** button next to **Default PC Overlay Source**.  This also stored in the touchpanel and is reset if the Desk Pro is powered on and off.  
