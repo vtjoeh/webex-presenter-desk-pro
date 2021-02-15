@@ -4,7 +4,8 @@ Uses the Webex Desk Pro feature of PC overlay in a Webex Meetings.  Move your im
 *Note: This code uses an API that might require your Desk Pro be in Preview or beta channel for the RoomOS.*
 
 ![Move and resive](./images/MoveAndResizeExample.png) <br/>
-![PIP Example](./images/PIPexample.png)  ![PC PIP Example](./images/PCpipexample.png)<br/><br/>
+
+<img src="./images/PIPexample.png" /> <img src="./images/PCpipexample.png" /> <br/>
   
 **Screen shot of Touch 10** 
 <br/><img src="./images/MoveZoomTab.png" width="400" />     <img src="./images/WebexPresenterTab.png" width="400" />
