@@ -91,7 +91,7 @@ function virtualBackground(x = foreground.X, y = foreground.Y, scale = foregroun
   } else {
     foreground = { X: x, Y: y, Scale: scale, Opacity: opacity, Composition: composition };
   }
-
+  xapi.command('Video Input MainVideo Mute'); 
   xapi.command('Cameras Background Set', { Mode: backgroundModePc });
   xapi.command('Cameras Background ForegroundParameters Set', foreground);
   MainCam_And_Content(content, mainCam);
@@ -100,24 +100,29 @@ function virtualBackground(x = foreground.X, y = foreground.Y, scale = foregroun
 xapi.event.on('UserInterface Extensions Widget Action', (event) => {
 
   if (event.WidgetId === 'swap_MainCam_Content' && event.Type === 'pressed') {
+    xapi.command('Video Input MainVideo Unmute'); 
     xapi.command('Cameras Background Set', { Mode: defaultBackgroundMode, Image: defaultBackgroundImage });
     MainCam_And_Content(mainCam, content);
   }
   else if (event.WidgetId === 'swap_Content_MainCam' && event.Type === 'pressed') {
+    xapi.command('Video Input MainVideo Mute'); 
     xapi.command('Cameras Background Set', { Mode: defaultBackgroundMode, Image: defaultBackgroundImage });
     MainCam_And_Content(content, mainCam);
   }
   else if (event.WidgetId === 'swap_prominent' && event.Type === 'pressed') {
+    xapi.command('Video Input MainVideo Mute'); 
     xapi.command('Cameras Background Set', { Mode: defaultBackgroundMode, Image: defaultBackgroundImage });
-    xapi.command("Video Input SetMainVideoSource", { ConnectorId: [2, 1], Layout: 'Prominent' });
-    xapi.command("Presentation Start", { PresentationSource: [2, 1], Layout: 'Prominent' });
+    xapi.command("Video Input SetMainVideoSource", { ConnectorId: [content, mainCam], Layout: 'Prominent' });
+    xapi.command("Presentation Start", { PresentationSource: [content, mainCam ], Layout: 'Prominent' });
   }
   else if (event.WidgetId === 'swap_equal' && event.Type === 'pressed') {
+    xapi.command('Video Input MainVideo Mute'); 
     xapi.command('Cameras Background Set', { Mode: defaultBackgroundMode, Image: defaultBackgroundImage });
-    xapi.command("Video Input SetMainVideoSource", { ConnectorId: [2, 1], Layout: 'Equal' });
-    xapi.command("Presentation Start", { PresentationSource: [2, 1], Layout: 'Equal' });
+    xapi.command("Video Input SetMainVideoSource", { ConnectorId:[content, mainCam], Layout: 'Equal' });
+    xapi.command("Presentation Start", { PresentationSource: [content, mainCam], Layout: 'Equal' });
   }
   else if (event.WidgetId === 'swap_video_composite' && event.Type === 'pressed') {
+    xapi.command('Video Input MainVideo Mute'); 
     xapi.command('Cameras Background Set', { Mode: defaultBackgroundMode, Image: defaultBackgroundImage });
     xapi.command("Video Input SetMainVideoSource", { ConnectorId: [3, 2, 1], Layout: 'Equal' });
     xapi.command("Presentation Start", { PresentationSource: [3, 2, 1], Layout: 'Equal' });
@@ -152,6 +157,7 @@ xapi.event.on('UserInterface Extensions Widget Action', (event) => {
         virtualBackground(5000, 5000, 100, 100, 'Blend');
         break;
       case 'clear':
+        xapi.command('Video Input MainVideo Unmute'); 
         MainCam_And_Content(mainCam, content);
         setTimeout(() => { xapi.command('Cameras Background Set', { Mode: defaultBackgroundMode, Image: defaultBackgroundImage }); }, 500);
       default:
@@ -195,6 +201,7 @@ function updateDefaultCamera(presentationMode) {
 }
 
 function resetToDefault() {
+  xapi.command('Video Input MainVideo Unmute');
   xapi.command("Presentation Stop");
   mainSources = [mainCam];
   updateMainLayout();
@@ -215,7 +222,7 @@ function getConferenceStatus() {
 }
 
 function callDisconnect() {
-  setTimeout(getConferenceStatus, 50);
+  setTimeout(getConferenceStatus, 100);
 }
 
 function defaultGui() {
@@ -244,7 +251,6 @@ function backgroundModeChange(mode) {
 }
 
 // Some default background image value is stored in the touchpanel 
-// TO DO:  Move variable storage to dbMacro  
 function getDefaultBackgroundImageTouchPanel() {
   xapi.Status.UserInterface.Extensions.Widget.get().then((widgets) => {
     for (const widget of widgets) {
@@ -358,7 +364,7 @@ function writeToDbMacro() {
   xapi.command('Macros Macro Save', { Name: 'dbMacro', body: macro });
 }
 
-function movePerson(event) {  // TO DO: Multiple if statements should be if...else if statements for efficiency 
+function movePerson(event) {  
   let widgetIdMatch = /(swap_zoom_.+|swap_move)/
   let compType = /swap_composition_(.+)/.exec(event.WidgetId);
 
