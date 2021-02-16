@@ -1,8 +1,10 @@
 # webex-presenter-desk-pro
-Uses the Webex Desk Pro feature of Immersive Share and is designed to work in a Webex Meetings.  
+Uses the Webex Desk Pro feature of Immersive Share and adds some additional features like:  
 - Move and resize your image.
 - Change between Picture-in-Picture (PIP), PC PIP and Blend.
 - Save the current view as a preset
+
+Designed to work a Webex Meeting. 
 
 **Note:** _The macro **dbMacro.js** also needs to be installed, but does not need to be enabled.  Presets are stored in this macro for cases when the macro engine is restarted or if the Desk Pro is turned off and on._ 
   
