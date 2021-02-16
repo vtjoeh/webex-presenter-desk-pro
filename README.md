@@ -14,7 +14,7 @@ Designed to work in a Webex Meeting.  Video is sent in the secondary content cha
 <img src="./images/PIPexample.png" width="800">
   
 **Screen shot of Touch 10** <br/>
-<img src="./images/MoveZoomTab.png" width="400" />     <img src="./images/WebexPresenterTab.png" width="400" />
+<img src="./images/WebexPresenterTab.png" width="400" />   <img src="./images/MoveZoomTab.png" width="400" />     
 <br/><br/><br/>
    
 The macro does not require a touch panel be attached to the Desk Pro, but it makes it easier to see the screen when you use the buttons.  
