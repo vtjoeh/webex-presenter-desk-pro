@@ -2,7 +2,7 @@
 Uses the Webex Desk Pro feature of Immersive Share and adds some additional features like:  
 - Move and resize your image.
 - Change between Picture-in-Picture (PIP), PC PIP and Blend.
-- Save the current view as a preset
+- Save the current view as a preset.
 
 Designed to work in a Webex Meeting.  Video is sent in the secondary content channel.   
 
