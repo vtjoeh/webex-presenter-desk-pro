@@ -8,7 +8,7 @@ Designed to work a Webex Meeting.
 
 **Note:** _The macro **dbMacro.js** also needs to be installed, but does not need to be enabled.  Presets are stored in this macro for cases when the macro engine is restarted or if the Desk Pro is turned off and on._ 
   
-**Note:** _This code uses an API that might require your Desk Pro RoomOS software be in Preview or beta channel._
+**Note:** _Requires CE9.15 or the latest RoomOS software_
 
 <img src="./images/MoveAndResizeExample.png" width="800">
 <img src="./images/PIPexample.png" width="800">
