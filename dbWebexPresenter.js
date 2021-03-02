@@ -1,4 +1,7 @@
-// Keep this macro.  Used By 'WebexPresenterForDeskPro.js ' to store variables. // This macro does not need to be enabled. export let memObj = {
+// Keep this macro. Used By 'WebexPresenterForDeskPro.js ' to store variables. 
+// This macro does not need to be enabled. 
+
+export let memObj = {
   "presets": [
     {
       "X": 1200,
