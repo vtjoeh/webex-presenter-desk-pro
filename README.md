@@ -6,7 +6,7 @@ Uses the Webex Desk Pro feature of Immersive Share and adds some additional feat
 
 Designed to work in a Webex Meeting.  Video is sent in the secondary content channel.   
 
-**Note:** _The macro **dbWebexPresenter.js** also needs to be installed, but does not need to be enabled.  Presets are stored in this macro for cases when the macro engine is restarted or if the Desk Pro is turned off and on._ 
+**Note:** _The macro **dbWebexPresenter.js** also needs to be installed but does not need to be enabled.  Presets are stored in this macro for cases when the macro engine is restarted or if the Desk Pro is turned off and on._ 
   
 **Note:** _Requires CE9.15 or the latest RoomOS software_
 
@@ -28,7 +28,7 @@ The macro does not require a touch panel be attached to the Desk Pro, but it mak
 
 **PC Background** - Select location. Always uses _Blend_. Cannot bet saved as preset.   
 
-**Present Me (Full)** - Only presents you full screen in the content channel.  This is great if others have Grid View on and you want to be seen fullsreen. 
+**Present Me (Full)** - Only presents you full screen in the content channel.  This is great if others have Grid View on and you want to be seen full screen. 
 
 **Present my PC** - Same as sharing your PC.  
 
@@ -53,7 +53,7 @@ The macro does not require a touch panel be attached to the Desk Pro, but it mak
 
 **Main Cam & USB-C & HDMI** Shows the Camera, USB-C and HDMI inputs all in one image.  
 
-**Equal** Shows the PC and Camera as teh same size. 
+**Equal** Shows the PC and Camera as the same size. 
 
 **Prominent** Shows the PC large.  At the bottom of the screen shows the Camera in a smaller box.  
 
@@ -61,23 +61,22 @@ The macro does not require a touch panel be attached to the Desk Pro, but it mak
 
 **Default PC Overlay Source** On startup, the macro determines if your USB-C or HDMI input is available.  If both are connected, it defaults to the USB-C input.  This can be overwritten by selecting the **USB** or **HDMI** button next to **Default PC Overlay Source**.  
 
-##  Other notes. 
+##  Other Notes
 
-In certain instances the macro automatically goes back to a default setting.  
+In certain instances, the macro automatically goes back to a default setting: 
 - At the start of the call, the view defaults back to a camera with no Immersive Share.  
 - If someone else shares content in a Webex meeting the macro turns off the Immersive Share and goes to your main camera with no virtual background. 
 - If the call ends, the macro automatically removes Immersive Share and returns to default settings. 
 
 ## To Do
 
-- Put back the the ability to keep the virtual background consistent from before and after the Immersive Share. 
+- Put back the ability to keep the virtual background consistent from before and after the Immersive Share. 
 - Update the screenshots in the README.md file. 
-- Spellcheck the READEM.md file. 
 
 # Webex Presenter v 0.15 changes:
-- Renamed the files to WebexPresenter.Js, dbWebexPresenter.js & WebexPresenter.xml.  
-- Removed the ability to changed the virtual background from the Macro to Images, Blur, etc. was removed. 
-- No longer returns to the last virtual background. The latest RoomOS software changed some default behaviours and knowing when to properly set the virtual background was becomming cumbersome. 
+- Renamed the files to 'WebexPresenter.js', 'dbWebexPresenter.js' & 'WebexPresenter.xml'.  The previous files 'dbMacro.js' and 'Webex Presenter For Desk Pro.js' or 'WebexPresenterForDeskPro.js' should be deleted from the Desk Pro.  If you end up with 2 Webex Presenter panel buttons on the touch panel, delete both and reload the XML file. 
+- Removed the ability to changed the virtual background from the Macro to Images, Blur, etc.   
+- No longer returns to the last virtual background. The latest RoomOS software changed some default behaviors and knowing when to properly set the virtual background was becoming overly cumbersome. 
 - Fixed a bug so CE9.15 will work (PIP and Video PIP are not supported yet on CE9.15). 
 - Changed the button namespace from 'swap_' to 'wbxpresent_'. 
 - Added a SpeakerTrack Diagnostics button. 
