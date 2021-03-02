@@ -6,7 +6,7 @@ Uses the Webex Desk Pro feature of Immersive Share and adds some additional feat
 
 Designed to work in a Webex Meeting.  Video is sent in the secondary content channel.   
 
-**Note:** _The macro **dbMacro.js** also needs to be installed, but does not need to be enabled.  Presets are stored in this macro for cases when the macro engine is restarted or if the Desk Pro is turned off and on._ 
+**Note:** _The macro **dbWebexPresenter.js** also needs to be installed, but does not need to be enabled.  Presets are stored in this macro for cases when the macro engine is restarted or if the Desk Pro is turned off and on._ 
   
 **Note:** _Requires CE9.15 or the latest RoomOS software_
 
@@ -19,38 +19,70 @@ Designed to work in a Webex Meeting.  Video is sent in the secondary content cha
    
 The macro does not require a touch panel be attached to the Desk Pro, but it makes it easier to see the screen when you use the buttons.  
   
-***Some of the buttons:***   
+***Description of some of the buttons:***   
 
 
 ## Webex Presenter tab
 
 **Presets** - Press 1 time to recall.  Hold down for 3 seconds to store the current preset.  
 
-**Hardcoded PC Background** - Select location.  Always uses blend. Cannot bet saved.  
+**PC Background** - Select location. Always uses _Blend_. Cannot bet saved as preset.   
 
-**Clear (Show PC)** - removes the overlay and shows the last PC. 
-
-**Reset to Default -->  Default (Main Cam Only)** - Return to sending main camera only. 
-  
-**Present Me** - Only presents you full screen in the content channel.  
+**Present Me (Full)** - Only presents you full screen in the content channel.  This is great if others have Grid View on and you want to be seen fullsreen. 
 
 **Present my PC** - Same as sharing your PC.  
 
+**Default (Main Cam Only)** - Return to sending main camera only. 
+  
 
-## Move tab 
+
+
+## Move Preset tab 
 
 **Arrows: Up Down Left Right** - moves the current PIP or overlay up, down, left or right.  
 
-**Zoom buttons** - Scale the PIP or overlay to larger or smaller
+**Scale buttons** - Scale the PIP or overlay to larger or smaller
 
 **Opacity (Blend only)** - Changes your opacity when the PC input is the virtual background.  
 
-**PIP Blend and Video PIP** - Changes the view. 
+**Blend, PIP & Video PIP** - Changes the view from. The Desk Pro needs to be on RoomOS (possibly Beta) for this feature to work. It does not work on CE9.15.  
 
-##  
+## Demos 
 
-The macro remembers your last virtual background before selecting the PC as the virtual background.  When the **Default (Main Cam Only)** button is cliked it will return to this background (e.g. custom image, preloaded background, background blur, none).  This setting is stored in the touch panel in case of a script restart.  
+**Diagnostics Demo** The toggle turns on SpeakerTrack Diagnostics mode and makes it the content channel.  
 
-In certain instances the macro automatically goes back to a default setting.  For example, if someone else shares content in a Webex meeting the macro returns to your main camera.  If the call ends, the macro automatically removes Immersive Share and returns to default settings. 
+**Main Cam & USB-C & HDMI** Shows the Camera, USB-C and HDMI inputs all in one image.  
 
-On startup, the macro determines if your USB-C or HDMI input is available.  If both are connected, it defaults to the USB-C input.  This can be overwritten by selecting the **Defaults** tab and selecting the **USB** or **HDMI** button next to **Default PC Overlay Source**.  This also stored in the touchpanel and is reset if the Desk Pro is powered on and off.  
+**Equal** Shows the PC and Camera as teh same size. 
+
+**Prominent** Shows the PC large.  At the bottom of the screen shows the Camera in a smaller box.  
+
+## Advanced 
+
+**Default PC Overlay Source** On startup, the macro determines if your USB-C or HDMI input is available.  If both are connected, it defaults to the USB-C input.  This can be overwritten by selecting the **USB** or **HDMI** button next to **Default PC Overlay Source**.  
+
+##  Other notes. 
+
+In certain instances the macro automatically goes back to a default setting.  
+- At the start of the call, the view defaults back to a camera with no Immersive Share.  
+- If someone else shares content in a Webex meeting the macro turns off the Immersive Share and goes to your main camera with no virtual background. 
+- If the call ends, the macro automatically removes Immersive Share and returns to default settings. 
+
+## To Do
+
+- Put back the the ability to keep the virtual background consistent from before and after the Immersive Share. 
+- Update the screenshots in the README.md file. 
+- Spellcheck the READEM.md file. 
+
+# Webex Presenter v 0.15 changes:
+- Renamed the files to WebexPresenter.Js, dbWebexPresenter.js & WebexPresenter.xml.  
+- Removed the ability to changed the virtual background from the Macro to Images, Blur, etc. was removed. 
+- No longer returns to the last virtual background. The latest RoomOS software changed some default behaviours and knowing when to properly set the virtual background was becomming cumbersome. 
+- Fixed a bug so CE9.15 will work (PIP and Video PIP are not supported yet on CE9.15). 
+- Changed the button namespace from 'swap_' to 'wbxpresent_'. 
+- Added a SpeakerTrack Diagnostics button. 
+- GUI changes, mostly moving buttons and changing some text. 
+- Removed the **Clear (Show PC)** button.  This button was redundant with the **Present my PC** button on the same page and not needed. 
+- Changed the number of Presets from 8 to 9.  The buttons are now larger and take 3 rows instead of 2.  
+- Changed the amount of time to hold down the Preset Button from 3 seconds to 1.5 seconds.    
+- Set the Page 'Webex Presenter' page as the default page every time the 'Webex Presenter' panel button is pushed.  
