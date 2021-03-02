@@ -176,13 +176,11 @@ xapi.event.on('UserInterface Extensions Widget Action', (event) => {
     virtualBackground();
   }
   else if (event.WidgetId === 'wbxpresent_diagnostics_toggle' && event.Value === 'on') {
-    stateCameraDiagnostics = true;
     xapi.command('Cameras SpeakerTrack Diagnostics Start');
     xapi.command('Video Input MainVideo Mute');
     xapi.command("Presentation Start", { ConnectorId: mainCam });
   }
   else if (event.WidgetId === 'wbxpresent_diagnostics_toggle' && event.Value === 'off') {
-    stateCameraDiagnostics = false;
     resetToDefault();
   }
   else {
