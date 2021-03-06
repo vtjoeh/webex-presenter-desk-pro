@@ -67,9 +67,9 @@ The macro does not require a touch panel be attached to the Desk Pro, but it mak
 
 ##  Other Notes
 
-In certain instances, the macro automatically goes back to a default setting: 
+In certain instances, the macro automatically goes back to a default settings and turns off Immersive Share: 
 - At the start of the call, the view defaults back to a camera with no Immersive Share.  
-- If someone else shares content in a Webex meeting the macro turns off the Immersive Share and goes to your main camera with no virtual background. 
+- If someone else shares content in a Webex meeting the macro turns off the Immersive Share and goes to your main camera. 
 - If the call ends, the macro automatically removes Immersive Share and returns to default settings. 
 
 ## To Do
