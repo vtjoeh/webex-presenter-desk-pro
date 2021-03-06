@@ -1,5 +1,5 @@
 /*
-WebexPresenterForDeskPro.js  ver 0.15
+WebexPresenterForDeskPro.js  ver 0.16
 
 Note: This Macro needs to be used with the dbWebexPresenter.js file to store variables.  The dbWebexPresenter.js file does not need to be enabled. 
 
@@ -10,8 +10,8 @@ Author:  Joe Hughes - joehughe AT Cisco
 */
 
 import xapi from 'xapi';
-import { memObj } from './dbWebexPresenter';
 const dbString = "dbWebexPresenter";
+const { memObj } = require(`./${dbString}`);
 
 let compositionSupported = true; // Is PIP and Video PIP supported?  For CE9.15 this should be set to false.  For RoomOS this can be set to true.  
 let mainCam = 1; // Input of Main video Camera
@@ -24,6 +24,12 @@ const timerMoveIncrement = 150;
 let timerMove;
 let timerPreset;
 let activeCalls;
+let defaultBackground = {};
+defaultBackground.State = 'Off' // On or Off - forces the virtual background.  Changed by the Default Background toggle. 
+defaultBackground.Mode = 'Blur' //  Mode: <Disabled, Blur, BlurMonochrome, DepthOfField, Monochrome, Image>  - Updated from touch panel, but returns to this value if system is reset. 
+defaultBackground.Image = 'Image1' // Image:  <Image1, Image2, Image3, Image4, Image5, Image6, Image7, User1, User2, User3>  -  Updated from touch panel.  First time value and value if macro is reset.
+defaultBackground.SpeakerTrackDiag = 'Off' //  keeps track if SpeakerTrack is enabled or not
+
 
 function setBackgroundModePc(content) {
   if (content === 2) {
@@ -83,13 +89,12 @@ function virtualBackground(x = foreground.X, y = foreground.Y, scale = foregroun
       compositionSupported = false;
       newForeground = { X: foreground.X, Y: foreground.Y, Scale: foreground.Scale, Opacity: foreground.Opacity };
       xapi.command('Cameras Background ForegroundParameters Set', newForeground);
-      console.log('ForegroundParameter Composition feature not yet supported.  Video PIP and PIP will not work. Setting "compositionSupported" to "false"');
+      console.error('ForegroundParameter Composition feature not yet supported.  Video PIP and PIP will not work. Setting "compositionSupported" to "false"');
     });
   xapi.command("Presentation Start", { ConnectorId: mainCam });
 }
 
 xapi.event.on('UserInterface Extensions Widget Action', (event) => {
-
   if (event.WidgetId === 'wbxpresent_MainCam_Content' && event.Type === 'pressed') {
     xapi.command("Presentation Start", { ConnectorId: content }).then(() => {
       setTimeout(() => {
@@ -97,7 +102,6 @@ xapi.event.on('UserInterface Extensions Widget Action', (event) => {
         xapi.command('Video Input MainVideo Unmute');
       }, 500)
     }); // add a little delay for a smoother transition
-
   }
   else if (event.WidgetId === 'wbxpresent_Content_MainCam' && event.Type === 'pressed') {
     xapi.command('Video Input MainVideo Mute');
@@ -105,12 +109,12 @@ xapi.event.on('UserInterface Extensions Widget Action', (event) => {
     xapi.command("Presentation Start", { ConnectorId: mainCam });
   }
   else if (event.WidgetId === 'wbxpresent_prominent' && event.Type === 'pressed') {
-    xapi.command('Cameras Background Set', { Mode: 'Disabled' });
+    selectDefaultBackground();
     xapi.command('Video Input MainVideo Mute');
     xapi.command("Presentation Start", { PresentationSource: [content, mainCam], Layout: 'Prominent' });
   }
   else if (event.WidgetId === 'wbxpresent_equal' && event.Type === 'pressed') {
-    xapi.command('Cameras Background Set', { Mode: 'Disabled' });
+    selectDefaultBackground();
     xapi.command('Video Input MainVideo Mute');
     xapi.command("Presentation Start", { PresentationSource: [content, mainCam], Layout: 'Equal' });
   }
@@ -119,15 +123,6 @@ xapi.event.on('UserInterface Extensions Widget Action', (event) => {
     xapi.command('Video Input MainVideo Mute');
 
     xapi.command("Presentation Start", { PresentationSource: [3, 2, 1], Layout: 'Equal' });
-  }
-  else if (event.WidgetId === 'wbxpresent_background_mode' && event.Type === 'pressed') {
-    if (event.Value === 'UsbC' || event.Value === 'Hdmi') {
-      backgroundModePc = event.Value;
-      updateContent();
-    }
-  }
-  else if (event.WidgetId === 'wbxpresent_btn_help_background' && event.Type === 'pressed') {
-    xapi.command("UserInterface Message Prompt Display", { Title: 'Default Background Override', Text: "When an Immersive Share ends, the selected backgroud will be shown, but you will be unable to disable virtual backgrounds outside of this menu. To turn off virtual backgrounds come here and click 'Disabled'.", 'Option.1': "OK", Duration: 60 });
   }
   else if (event.WidgetId === 'wbxpresent_btn_help_pc_source' && event.Type === 'pressed') {
     xapi.command("UserInterface Message Prompt Display", { Title: 'Default PC Overlay Source', Text: "The macro auto-selects USB-C or HDMI as the virtual background source.  If both are connected, USB-C will be the selected source and the option can be changed here. This setting is reset on restart.", 'Option.1': "OK", Duration: 60 });
@@ -155,6 +150,32 @@ xapi.event.on('UserInterface Extensions Widget Action', (event) => {
         break;
     }
   }
+  else if (event.WidgetId === 'wbxpresent_background_image' && event.Type === 'pressed') {
+    xapi.Command.UserInterface.Extensions.Widget.UnsetValue({ WidgetId: 'wbxpresent_background_mode' });
+    xapi.command('Cameras Background Set', { Mode: 'Image', Image: event.Value })
+      .then(() => {
+        defaultBackground.Image = event.Value;
+        defaultBackground.Mode = 'Image';
+        setDefaultBackgroundImageText();
+      })
+      .catch((error) => {  // If no background User Image is set.  
+        console.error(error);
+        xapi.command("UserInterface Message Prompt Display", { Text: 'No user image set for ' + defaultBackground.Image + ' setting background to default Image1.', 'Option.1': 'OK', Duration: 3 })
+        xapi.command('Cameras Background Set', { Mode: 'Image', Image: 'Image1' })
+        defaultBackground.Image = 'Image1';
+        defaultBackground.Mode = 'Image';
+        setDefaultBackgroundImageText('Image', 'Image1');
+      });
+  }
+  else if (event.WidgetId === 'wbxpresent_background_mode' && event.Type === 'pressed') {
+    xapi.Command.UserInterface.Extensions.Widget.UnsetValue({ WidgetId: 'wbxpresent_background_image' });
+    xapi.command('Cameras Background Set', { Mode: event.Value });
+    //  if(defaultBackground.State === 'On'){
+    defaultBackground.Mode = event.Value;
+
+    //  };
+    setDefaultBackgroundImageText();
+  }
   else if (event.WidgetId === 'wbxpresent_overlay_usbc' && event.Type === 'pressed') {
     backgroundModePc = 'UsbC';
     updateContent(backgroundModePc);
@@ -175,7 +196,18 @@ xapi.event.on('UserInterface Extensions Widget Action', (event) => {
     setWidgetOpacityText(foreground.Opacity);
     virtualBackground();
   }
+  else if (event.WidgetId === 'wbxpresent_toggle_virtual_background' && event.Value === 'on') {
+    let messageBackground = "When an Immersive Share ends, the selected backgroud will be shown. Virtual backgrounds need to be changed from this menu until toggled 'off'. This setting toggles 'off' after a restart."
+    xapi.command("UserInterface Message Prompt Display", { Title: 'Default Background Override', Text: messageBackground, 'Option.1': "OK", Duration: 60 });
+    defaultBackground.State = 'On';
+    setDefaultBackgroundImageText();
+  }
+  else if (event.WidgetId === 'wbxpresent_toggle_virtual_background' && event.Value === 'off') {
+    defaultBackground.State = 'Off';
+    setDefaultBackgroundImageText();
+  }
   else if (event.WidgetId === 'wbxpresent_diagnostics_toggle' && event.Value === 'on') {
+    defaultBackground.SpeakerTrackDiag = 'Onn';
     xapi.command('Cameras SpeakerTrack Diagnostics Start');
     xapi.command('Video Input MainVideo Mute');
     xapi.command("Presentation Start", { ConnectorId: mainCam });
@@ -194,8 +226,21 @@ function updateDefaultCamera(presentationMode) {
   }
 }
 
+function selectDefaultBackground() {
+  defaultBackground.SpeakerTrackDiag = 'Off';
+  if (defaultBackground.State === 'Off') {
+    xapi.command('Cameras Background Set', { Mode: 'Disabled' });
+  }
+  else {
+    xapi.Command.Cameras.Background.Set({ Mode: defaultBackground.Mode, Image: defaultBackground.Image }).catch(() => {
+      xapi.Command.Cameras.Background.Set({ Mode: defaultBackground.Mode });  // just incase the User Image is not set and there is an error, try again.
+      console.error('error on xapi.Command.Cameras.Background.Set({ Mode: defaultBackground.Mode, Image: defaultBackground.Image }), trying again as xapi.Command.Cameras.Background.Set({ Mode: defaultBackground.Mode })');
+    });
+  }
+}
+
 function resetToDefault() {
-  xapi.command('Cameras Background Set', { Mode: 'Disabled' });
+  selectDefaultBackground();
   xapi.command('Video Input MainVideo Unmute');
   xapi.command("Presentation Stop").then(
     () => {
@@ -380,6 +425,40 @@ function openPanel(panel) {
   }
 }
 
+function setDefaultBackgroundImageText(mode = defaultBackground.Mode, image = defaultBackground.Image) {
+  let textValue = 'Mode: ' + mode;
+  if (mode === 'Image') {
+    textValue += " ==> " + image;
+  }
+  if (defaultBackground.State === 'Off') {
+    textValue = "Default Background Not Set";
+  }
+  xapi.command('UserInterface Extensions Widget SetValue', {
+    WidgetId: 'wbxpresent_text_default_background',
+    Value: textValue
+  });
+}
+
+
+function backgroundModeChange(newMode) {
+  if (defaultBackground.State === 'On' && newMode !== defaultBackground.Mode && newMode === 'Disabled' && defaultBackground.SpeakerTrackDiag === 'Off') {
+    xapi.Command.Cameras.Background.Set({ Mode: defaultBackground.Mode, Image: defaultBackground.Image });
+  }
+}
+
+function updateBackgroundToggle() {
+  xapi.Command.UserInterface.Extensions.Widget.SetValue({
+    WidgetId: 'wbxpresent_toggle_virtual_background',
+    Value: 'off'
+  });
+}
+
+updateBackgroundToggle(); // set toggle of background to off when it first starts. 
+
+determineDefaultPCsource();
+
+xapi.Status.Cameras.Background.Mode.on(backgroundModeChange);
+
 setBackgroundModePc(content);
 
 xapi.Status.Video.Input.Connector.on(determineDefaultPCsource);
@@ -394,9 +473,10 @@ xapi.Status.Conference.Presentation.Mode.on(updateDefaultCamera);
 
 xapi.Event.UserInterface.Extensions.Panel.Clicked.on(openPanel);
 
-
 /*
 Warranty & Licensing:
 This is sample code.  There is no warranty for this code and no special licensing to use.  Like any custom deployment, it is the responsibility of the partner and/or customer to ensure that the customization works correctly on the device.
 */
+
+
 
