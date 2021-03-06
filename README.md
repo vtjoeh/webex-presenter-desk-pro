@@ -74,8 +74,8 @@ In certain instances, the macro automatically goes back to a default setting:
 
 ## To Do
 
-- Put back the ability to keep the virtual background consistent from before and after the Immersive Share. 
 - Update the screenshots in the README.md file. 
+- Cleanup the code. 
 
 # Webex Presenter v 0.15 changes:
 - Renamed the files to 'WebexPresenter.js', 'dbWebexPresenter.js' & 'WebexPresenter.xml'.  The previous files 'dbMacro.js' and 'Webex Presenter For Desk Pro.js' or 'WebexPresenterForDeskPro.js' should be deleted from the Desk Pro.  If you end up with 2 Webex Presenter panel buttons on the touch panel, delete both and reload the XML file. 
