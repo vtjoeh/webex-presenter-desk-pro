@@ -35,8 +35,6 @@ The macro does not require a touch panel be attached to the Desk Pro, but it mak
 **Default (Main Cam Only)** - Return to sending main camera only. 
   
 
-
-
 ## Move Preset tab 
 
 **Arrows: Up Down Left Right** - moves the current PIP or overlay up, down, left or right.  
@@ -47,7 +45,8 @@ The macro does not require a touch panel be attached to the Desk Pro, but it mak
 
 **Blend, PIP & Video PIP** - Changes the view from. The Desk Pro needs to be on RoomOS (possibly Beta) for this feature to work. It does not work on CE9.15.  
 
-## Demos 
+
+## Demos tab
 
 **Diagnostics Demo** The toggle turns on SpeakerTrack Diagnostics mode and makes it the content channel.  
 
@@ -57,7 +56,8 @@ The macro does not require a touch panel be attached to the Desk Pro, but it mak
 
 **Prominent** Shows the PC large.  At the bottom of the screen shows the Camera in a smaller box.  
 
-## Advanced 
+
+## Advanced tab
 
 **Default PC Overlay Source** On startup, the macro determines if your USB-C or HDMI input is available.  If both are connected, it defaults to the USB-C input.  This can be overwritten by selecting the **USB** or **HDMI** button next to **Default PC Overlay Source**.  
 
@@ -65,17 +65,20 @@ The macro does not require a touch panel be attached to the Desk Pro, but it mak
 
 **Force Default Background toggle** By default the Desk Pro turns off virtual backgrounds when there is a Presentation Stop during an Immersive Share, which creates a ton of issues if you like virtual backgrounds.  This toggle forces it so if the Desk Pro sets the virtual background to 'Disabled' (no virtual background), then the macro resets the virtual background to whatever is chosen on this line.  It is not possible to disable virtual backgrounds from other menus if this is toggled 'On'.  
 
+
 ##  Other Notes
 
-In certain instances, the macro automatically goes back to a default settings and turns off Immersive Share: 
+In certain instances, the macro automatically goes back to default settings and turns off Immersive Share: 
 - At the start of the call, the view defaults back to a camera with no Immersive Share.  
 - If someone else shares content in a Webex meeting the macro turns off the Immersive Share and goes to your main camera. 
 - If the call ends, the macro automatically removes Immersive Share and returns to default settings. 
+- If **Force Default Background** is toggled on, it will try to turn on your preferred virtual background. 
+
 
 ## To Do
 
 - Update the screenshots in the README.md file. 
-- Cleanup the code. 
+
 
 # Webex Presenter v 0.15 changes:
 - Renamed the files to 'WebexPresenter.js', 'dbWebexPresenter.js' & 'WebexPresenter.xml'.  The previous files 'dbMacro.js' and 'Webex Presenter For Desk Pro.js' or 'WebexPresenterForDeskPro.js' should be deleted from the Desk Pro.  If you end up with 2 Webex Presenter panel buttons on the touch panel, delete both and reload the XML file. 
@@ -91,7 +94,5 @@ In certain instances, the macro automatically goes back to a default settings an
 - Set the Page 'Webex Presenter' page as the default page every time the 'Webex Presenter' panel button is pushed.  
 
 # Webex Presenter v 0.16 changes:
-- re-added virtual background support and added a **Forced Default Background**.  
-- minor GUI changes
-- minor code changes
-- Added 
+- re-added virtual background support and added a **Force Default Background** option.
+- minor GUI changes, minor code changes.
