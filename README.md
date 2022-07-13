@@ -6,6 +6,8 @@ Uses the Webex Desk Pro feature of Immersive Share and adds some additional feat
 
 Designed to work in a Webex Meeting.  Video is sent in the secondary content channel.   
 
+**Note:** _May not work with **webex-desk-slide-presenter.**  Both macros use the same API and may cause conflicts._
+
 **Note:** _The macro **dbWebexPresenter.js** also needs to be installed but does not need to be enabled.  Presets are stored in this macro for cases when the macro engine is restarted or if the Desk Pro is turned off and on._ 
   
 **Note:** _Requires CE9.15 or the latest RoomOS software_
